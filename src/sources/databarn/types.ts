@@ -1,4 +1,4 @@
-export interface TimelineAnalyticsConfig {
+interface TimelineAnalyticsConfig {
   datetime: string;
   product_key: string;
   display_name: string;
@@ -17,3 +17,27 @@ export interface TimelineAnalyticsConfig {
 }
 
 export type DatabarnTimelineResponse = TimelineAnalyticsConfig[];
+
+interface PriceAnalyticsConfig {
+  '0': string;
+  '1': string;
+  '2': string;
+  '3': string;
+  '4': string;
+}
+
+export type DatabarnPriceResponse = PriceAnalyticsConfig[];
+
+export enum DatabarnProduct {
+  vault,
+  boost,
+}
+export type DatabarnProductType = keyof typeof DatabarnProduct;
+export const allDatabarnProductTypes = Object.keys(DatabarnProduct);
+
+export enum DatabarnPrice {
+  share_to_underlying,
+  underlying_to_usd,
+}
+export type DatabarnPriceType = keyof typeof DatabarnPrice;
+export const allDatabarnPriceTypes = Object.keys(DatabarnPrice);

@@ -3,6 +3,7 @@ import FastifySwagger from '@fastify/swagger';
 import FastifySwaggerUI from '@fastify/swagger-ui';
 import { API_ENV } from '../../config/env';
 import timeline from './v1/timeline';
+import price from './v1/price';
 
 export default async function (
   instance: FastifyInstance,
@@ -16,9 +17,7 @@ export default async function (
           title: 'API',
           version: '1.0.0',
         },
-        tags: [
-          { name: 'v1', description: 'API v1' },
-        ],
+        tags: [{ name: 'v1', description: 'API v1' }],
       },
     })
     .register(FastifySwaggerUI, {
@@ -31,5 +30,6 @@ export default async function (
       reply.send(instance.swagger());
     })
     .register(timeline, { prefix: '/v1' })
+    .register(price, { prefix: '/v1' });
   done();
 }
