@@ -9,4 +9,4 @@ export const TIME_BUCKETS = {
 
 export type TimeBucket = keyof typeof TIME_BUCKETS;
 
-export const allTimeBuckets = Object.keys(TIME_BUCKETS);
+export const allTimeBuckets = Object.keys(TIME_BUCKETS) as TimeBucket[];
