@@ -12,14 +12,14 @@ import { isAxiosError } from 'axios';
 
 interface DataApiPriceQueryString {
   oracle: string;
-  bucket: string;
+  bucket: TimeBucket;
 }
 
 interface DatabarnPriceQueryString {
   address: string;
-  productType: string;
+  productType: DatabarnProductType;
   bucket: TimeBucket;
-  priceType: string;
+  priceType: DatabarnPriceType;
   chain: string;
 }
 
@@ -51,12 +51,12 @@ async function handlePriceHistory(reply: FastifyReply, queryParams: HistoricPric
       'productType' in queryParams
         ? await getDataBarnPrice(
             queryParams.chain,
-            queryParams.productType as DatabarnProductType,
+            queryParams.productType,
             queryParams.address,
             queryParams.bucket,
-            queryParams.priceType as DatabarnPriceType
+            queryParams.priceType
           )
-        : await getDataApiPrices(queryParams.oracle, queryParams.bucket as TimeBucket);
+        : await getDataApiPrices(queryParams.oracle, queryParams.bucket);
     reply.status(200);
     return { result };
   } catch (err) {

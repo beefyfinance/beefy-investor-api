@@ -33,11 +33,11 @@ export enum DatabarnProduct {
   boost,
 }
 export type DatabarnProductType = keyof typeof DatabarnProduct;
-export const allDatabarnProductTypes = Object.keys(DatabarnProduct);
+export const allDatabarnProductTypes = Object.keys(DatabarnProduct) as DatabarnProductType[];
 
 export enum DatabarnPrice {
   share_to_underlying,
   underlying_to_usd,
 }
 export type DatabarnPriceType = keyof typeof DatabarnPrice;
-export const allDatabarnPriceTypes = Object.keys(DatabarnPrice);
+export const allDatabarnPriceTypes = Object.keys(DatabarnPrice) as DatabarnPriceType[];
