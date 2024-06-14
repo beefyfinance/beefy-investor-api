@@ -1,13 +1,15 @@
 import axios from 'axios';
+import { getAxiosInstance } from '../../utils/http';
 import { CLMAnalyticsUserTimelineResponse } from './types';
 
-const BASE_URL = 'https://clm-api.beefy.finance/api/v1/investor/';
+const http = getAxiosInstance(
+  'https://clm-api.beefy.finance/api/v1/investor/',
+  process.env['CLM_API_KEY'] || ''
+);
 
 export const getClmApiTimeline = async (address: string) => {
   try {
-    const response = await axios.get<CLMAnalyticsUserTimelineResponse>(
-      `${BASE_URL}${address}/timeline`
-    );
+    const response = await http.get<CLMAnalyticsUserTimelineResponse>(`${address}/timeline`);
     return response.data;
   } catch (err: any) {
     console.log(err.message);
